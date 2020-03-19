@@ -1,0 +1,15 @@
+{% extends 'pages/base.html' %}
+{% block title %}
+list
+{% endblock title %}
+{% block content %}
+{% for post in Post  %}
+<h1>{{ post.datetime|date:"d-m-Y" }} </h1>
+<h2><a href = "{% url 'blog:post_detail' post.id %}"> {{post.title}} </a> </h2> 
+<img src="{{post.image.url}}" width="500px" height="300px" alt="">
+{% endfor %}
+<br>
+{% if page_obj.has_next %}
+<a href="{{request.url}}?page={{page_obj.next_page_number}}">tiep theo</a>
+{% endif %}
+{% endblock content %}
